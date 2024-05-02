@@ -1883,6 +1883,14 @@ namespace LLC_MOD_Toolbox
         private void uiButton1_Click(object sender, EventArgs e)
         {
             logger.Info("尝试开关模组。");
+            if (File.Exists(limbusCompanyDir + "/winhttp.dll")&& File.Exists(limbusCompanyDir + "/winhttp.dll.disable"))
+            {
+                File.Delete(limbusCompanyDir + "/winhttp.dll");
+                logger.Info("同时出现了模组开关文件的两个状态。已解决该问题并关闭模组。");
+                MessageBox.Show("出现了一些问题，已关闭模组。", "提示");
+                return;
+            }
+
             if (File.Exists(limbusCompanyDir + "/winhttp.dll"))
             {
                 File.Move(limbusCompanyDir + "/winhttp.dll", limbusCompanyDir + "/winhttp.dll.disable");
